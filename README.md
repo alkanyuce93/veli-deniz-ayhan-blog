@@ -1,6 +1,55 @@
-# Veli Deniz Ayhan - Kişisel Blog Sitesi
+# Kişisel Blog Projesi
 
-Bu proje, Veli Deniz Ayhan'ın kişisel blog sitesidir.
+Next.js ve Supabase kullanılarak geliştirilmiş kişisel blog projesi.
+
+## Özellikler
+
+- 🎨 Açık/Koyu tema desteği
+- 📱 Responsive tasarım
+- ✍️ Markdown blog yazıları
+- 🖼️ Resim yükleme desteği
+- 📊 Admin paneli
+- 🔍 Blog yazıları filtreleme
+
+## Teknolojiler
+
+- Next.js
+- TypeScript
+- Styled Components
+- Supabase
+- React MD Editor
+
+## Kurulum
+
+1. Repository'yi klonlayın:
+   \`\`\`bash
+   git clone https://github.com/alkanyuce93/veli-deniz-ayhan-blog.git
+   \`\`\`
+
+2. Bağımlılıkları yükleyin:
+   \`\`\`bash
+   npm install
+   \`\`\`
+
+3. Geliştirme sunucusunu başlatın:
+   \`\`\`bash
+   npm run dev
+   \`\`\`
+
+4. Tarayıcınızda http://localhost:3001 adresini açın
+
+## Ortam Değişkenleri
+
+Projeyi çalıştırmak için aşağıdaki ortam değişkenlerini `.env.local` dosyasında tanımlamanız gerekiyor:
+
+\`\`\`
+NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
+\`\`\`
+
+## Lisans
+
+MIT
 
 ## Tamamlananlar
 
@@ -110,34 +159,3 @@ CREATE TABLE contact_messages (
 ```sql
 INSERT INTO storage.buckets (id, name) VALUES ('files', 'files');
 ```
-
-## Kurulum
-
-1. Projeyi klonlayın
-
-```bash
-git clone https://github.com/velidenizayhan/blog.git
-cd blog
-```
-
-2. Bağımlılıkları yükleyin
-
-```bash
-npm install
-```
-
-3. `.env.local` dosyasını oluşturun ve Supabase bilgilerini ekleyin
-
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-SUPABASE_SERVICE_KEY=your_supabase_service_key
-```
-
-4. Geliştirme sunucusunu başlatın
-
-```bash
-npm run dev
-```
-
-5. Tarayıcınızda http://localhost:3000 adresini açın
