@@ -1,36 +1,143 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Veli Deniz Ayhan - Kişisel Blog Sitesi
 
-## Getting Started
+Bu proje, Veli Deniz Ayhan'ın kişisel blog sitesidir.
 
-First, run the development server:
+## Tamamlananlar
+
+- Next.js projesi kurulumu
+- TypeScript entegrasyonu
+- Styled Components ve Supabase bağımlılıkları
+- Supabase bağlantı bilgileri (.env.local)
+- Veritabanı tabloları (files ve posts)
+- Tema sistemi kurulumu
+- Global stiller ve tipografi
+- Responsive layout tasarımı
+- Şifreli dosya yükleme bileşeni
+- Ana sayfa tasarımı
+- Upload API endpoint'i
+- Hakkımda sayfası
+- Blog sayfası ve blog yazısı detay sayfası
+- İletişim sayfası ve contact API endpoint'i
+
+## Yapılacaklar
+
+### Sayfaların Oluşturulması
+
+- İletişim sayfası
+
+### Gerekli Bağımlılıklar
+
+- formidable (dosya yükleme işlemleri için)
+
+### Diğer Görevler
+
+- Blog yazılarının dinamik olarak yüklenmesi
+- SEO optimizasyonu
+- Performans iyileştirmeleri
+- Test yazımı
+- Profil fotoğrafının eklenmesi
+
+## Veritabanı Tabloları
+
+### posts
+
+- id: int8
+- title: string
+- content: string
+- excerpt: string
+- slug: string
+- created_at: timestamp
+- cover_image: string
+
+### files
+
+- id: int8
+- filename: string
+- filepath: string
+- created_at: timestamp
+
+### contact_messages
+
+- id: int8
+- name: string
+- email: string
+- message: text
+- created_at: timestamp
+
+## Veritabanı Yapısı
+
+### files
+
+```sql
+CREATE TABLE files (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+  name TEXT NOT NULL,
+  url TEXT NOT NULL,
+  size INTEGER NOT NULL,
+  type TEXT NOT NULL
+);
+```
+
+### posts
+
+```sql
+CREATE TABLE posts (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+  title TEXT NOT NULL,
+  content TEXT NOT NULL,
+  image_url TEXT,
+  author_id UUID NOT NULL
+);
+```
+
+### contact_messages
+
+```sql
+CREATE TABLE contact_messages (
+  id UUID DEFAULT uuid_generate_v4() PRIMARY KEY,
+  created_at TIMESTAMP WITH TIME ZONE DEFAULT TIMEZONE('utc'::text, NOW()) NOT NULL,
+  name TEXT NOT NULL,
+  email TEXT NOT NULL,
+  message TEXT NOT NULL,
+  status TEXT DEFAULT 'unread'
+);
+```
+
+### Storage Buckets
+
+```sql
+INSERT INTO storage.buckets (id, name) VALUES ('files', 'files');
+```
+
+## Kurulum
+
+1. Projeyi klonlayın
+
+```bash
+git clone https://github.com/velidenizayhan/blog.git
+cd blog
+```
+
+2. Bağımlılıkları yükleyin
+
+```bash
+npm install
+```
+
+3. `.env.local` dosyasını oluşturun ve Supabase bilgilerini ekleyin
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+SUPABASE_SERVICE_KEY=your_supabase_service_key
+```
+
+4. Geliştirme sunucusunu başlatın
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. Tarayıcınızda http://localhost:3000 adresini açın
